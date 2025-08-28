@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -48,8 +49,11 @@ export default function ProductPage() {
   };
 
   return (
+    
     <div className="p-6 max-w-6xl mx-auto">
-      <div className="flex flex-col md:flex-row gap-6">
+      <Navbar/>
+      <div className="flex flex-col md:flex-row gap-6 mt-5">
+        
         {/* Thumbnails */}
         <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-y-auto md:max-h-[384px]">
           {product.images.map((img, i) => (
@@ -133,7 +137,7 @@ export default function ProductPage() {
         />
         <button
           onClick={addReview}
-          className="mt-2 bg-pink-500 text-white px-4 py-2 rounded shadow hover:bg-pink-600"
+          className="mt-2 bg-pink-600 text-white px-4 py-2 rounded shadow hover:bg-pink-500"
         >
           Submit Review
         </button>
@@ -141,7 +145,7 @@ export default function ProductPage() {
 
       {/* Share */}
       <button
-        className="mt-6 bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600"
+        className="mt-6 bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-400"
         onClick={() =>
           navigator.share
             ? navigator.share({ title: product.name, url: window.location.href })
