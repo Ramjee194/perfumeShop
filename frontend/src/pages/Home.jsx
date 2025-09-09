@@ -8,10 +8,12 @@ export default function Home() {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     // Backend se products fetch karo
     axios
-      .get("http://localhost:5000/api/products")
+      .get(`${backendUrl}/api/products`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.error("Error fetching products:", err));
   }, []);

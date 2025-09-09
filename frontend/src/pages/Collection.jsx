@@ -6,12 +6,13 @@ import Navbar from "./Navbar";
 
 export default function Collection() {
   const [products, setProducts] = useState([]);
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-  useEffect(() => {
-    axios.get("http://localhost:5000/api/products")
-      .then(res => setProducts(res.data))
-      .catch(err => console.error("Error fetching products", err));
-  }, []);
+ useEffect(() => {
+  axios.get(`${backendUrl}/api/products`)
+    .then(res => setProducts(res.data))
+    .catch(err => console.error("Error fetching products", err));
+}, [backendUrl]);
 
   return (
    
