@@ -9,9 +9,10 @@ export default function ProductPage() {
   const [review, setReview] = useState("");
   const [currentImage, setCurrentImage] = useState(0);
   const [history, setHistory] = useState([]); // image click history
+   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/products/${id}`)
+    axios.get(`${backendUrl}/api/products/${id}`)
       .then(res => {
         setProduct(res.data);
         setHistory([res.data.images[0]]); // initialize with first image
@@ -21,7 +22,7 @@ export default function ProductPage() {
 
   const addReview = () => {
     if (!review.trim()) return alert("Please write something.");
-    axios.post(`http://localhost:5000/api/products/${id}/reviews`, {
+    axios.post(`${backendUrl}/api/products/${id}/reviews`, {
       user: "Guest",
       comment: review,
       rating: 5
